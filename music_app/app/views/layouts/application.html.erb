@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>MusicApp</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "css_reset" %>
+    <%= stylesheet_link_tag "application" %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@900&family=Source+Sans+Pro:wght@300&display=swap" rel="stylesheet">
+  </head>
+
+  <body>
+    <header>
+      <h1>Music App</h1>
+      <nav id="navbar">
+        <ul>
+          <li><a href="<%= bands_url %>">Bands</a><li>
+          <li><% if logged_in? %>
+          <form action="<%= session_url %>" method="post">
+            <input type="hidden" name="_method" value="DELETE">
+            <input type="submit" value="Logout">
+          </form></li>
+        </ul>
+      <% end %>
+      </nav>
+    </header>
+    
+    <%= yield %>
+  </body>
+</html>
